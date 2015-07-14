@@ -235,7 +235,7 @@ Game.prototype = {
 		}
 
 		// fire a bullet
-		if (this.keyboarder.isDown(this.keyboarder.KEYS.SPACE)) {
+		if (this.keyboarder.isPressed(this.keyboarder.KEYS.SPACE)) {
 			var bullet = new Bullet(this.game,
 									{ x: this.center.x, y: this.center.y - this.size.y - 10 },
 									{ x: 0, y: -7 });
@@ -303,8 +303,19 @@ Game.prototype = {
 	window.addEventListener('keyup', function(e) {
 	  keyState[e.keyCode] = false;
 	});
+	
+	window.addEventListener('keypress', function(e)) {
+		keyState[e.keyCode] = true;
+		if( e.keyCode === self.KEYS.LEFT || e.keyCode === self.KEYS.RIGHT || e.keyCode === self.KEYS.SPACE ) {
+			e.preventDefault();
+		}
+	});
 
 	this.isDown = function(keyCode) {
+	  return keyState[keyCode] === true;
+	};
+	
+	this.isPressed = function(keyCode) {
 	  return keyState[keyCode] === true;
 	};
 
