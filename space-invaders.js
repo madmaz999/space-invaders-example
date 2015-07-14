@@ -304,7 +304,7 @@ Game.prototype = {
 	  keyState[e.keyCode] = false;
 	});
 	
-	window.addEventListener('keypress', function(e)) {
+	window.addEventListener('keypress', function(e) {
 		keyState[e.keyCode] = true;
 		if( e.keyCode === self.KEYS.LEFT || e.keyCode === self.KEYS.RIGHT || e.keyCode === self.KEYS.SPACE ) {
 			e.preventDefault();
